@@ -54,7 +54,7 @@
 
             </RelativeLayout>
 
-            <com.here.name.website.poom.Utils.SquareImageView
+            <com.here.name.website.Civitas.Utils.SquareImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/post_image"

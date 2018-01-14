@@ -30,21 +30,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <service android:name="com.here.name.website.poom.Utils.FirebaseMessagingService" >
+        <service android:name="com.here.name.website.Civitas.Utils.FirebaseMessagingService" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name="com.here.name.website.poom.Home.MainActivity" >
+        <activity android:name="com.here.name.website.Civitas.Home.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.here.name.website.poom.Requests.RequestsActivity" />
-        <activity android:name="com.here.name.website.poom.Profile.ProfileActivity" >
+        <activity android:name="com.here.name.website.Civitas.Requests.RequestsActivity" />
+        <activity android:name="com.here.name.website.Civitas.Profile.ProfileActivity" >
             <intent-filter>
                 <action android:name="com.here.name.website.poom_TARGET_NOTIFICATION" />
 
@@ -52,14 +52,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.here.name.website.poom.Search.SearchActivity"
+            android:name="com.here.name.website.Civitas.Search.SearchActivity"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
-        <activity android:name="com.here.name.website.poom.Share.ShareActivity" />
-        <activity android:name="com.here.name.website.poom.Profile.AccountSettingsActivity" />
-        <activity android:name="com.here.name.website.poom.Login.RegisterActivity" />
-        <activity android:name="com.here.name.website.poom.Login.LoginActivity" />
-        <activity android:name="com.here.name.website.poom.Share.NextActivity" />
+        <activity android:name="com.here.name.website.Civitas.Share.ShareActivity" />
+        <activity android:name="com.here.name.website.Civitas.Profile.AccountSettingsActivity" />
+        <activity android:name="com.here.name.website.Civitas.Login.RegisterActivity" />
+        <activity android:name="com.here.name.website.Civitas.Login.LoginActivity" />
+        <activity android:name="com.here.name.website.Civitas.Share.NextActivity" />
 
         <!--
         For profile photo crop

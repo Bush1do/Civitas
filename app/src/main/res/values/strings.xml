@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Poom</string>
+    <string name="app_name">Civitas</string>
 
     <!--Fragment Names-->
     <string name="edit_profile_fragment">Edit Profile</string>
