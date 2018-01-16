@@ -8,6 +8,7 @@
     <string name="profile_fragment">Profile</string>
     <string name="view_comments_fragment">View Comments</string>
     <string name="view_profile_fragment">View Profile</string>
+    <string name="feelings_fragment">Fragment</string>
 
     <!--Dialog Names-->
     <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
@@ -23,6 +24,7 @@
     <string name="dbname_user_account_settings">user_account_settings</string>
     <string name="dbname_photos">photos</string>
     <string name="dbname_user_photos">user_photos</string>
+    <string name="dbname_emotions">emotions</string>
     <string name="field_username">username</string>
     <string name="field_email">email</string>
     <string name="field_displayName">display_name</string>

@@ -58,17 +58,17 @@ public final class R {
         public static final int center = 0x7f080033;
         public static final int dark = 0x7f080052;
         public static final int email = 0x7f080061;
-        public static final int icon_only = 0x7f08007f;
-        public static final int light = 0x7f080096;
-        public static final int none = 0x7f0800ab;
-        public static final int normal = 0x7f0800ac;
-        public static final int progressBar = 0x7f0800c4;
-        public static final int radio = 0x7f0800c7;
-        public static final int standard = 0x7f0800fa;
-        public static final int text = 0x7f080103;
-        public static final int text2 = 0x7f080104;
-        public static final int wide = 0x7f08012f;
-        public static final int wrap_content = 0x7f080132;
+        public static final int icon_only = 0x7f080080;
+        public static final int light = 0x7f080097;
+        public static final int none = 0x7f0800ac;
+        public static final int normal = 0x7f0800ad;
+        public static final int progressBar = 0x7f0800c5;
+        public static final int radio = 0x7f0800c8;
+        public static final int standard = 0x7f0800fb;
+        public static final int text = 0x7f080104;
+        public static final int text2 = 0x7f080105;
+        public static final int wide = 0x7f080130;
+        public static final int wrap_content = 0x7f080133;
     }
     public static final class integer {
         public static final int google_play_services_version = 0x7f090007;
@@ -91,7 +91,7 @@ public final class R {
         public static final int common_open_on_phone = 0x7f0d0037;
         public static final int common_signin_button_text = 0x7f0d0038;
         public static final int common_signin_button_text_long = 0x7f0d0039;
-        public static final int fcm_fallback_notification_channel_label = 0x7f0d004d;
+        public static final int fcm_fallback_notification_channel_label = 0x7f0d004e;
     }
     public static final class styleable {
         public static final int[] LoadingImageView = { 0x7f03004e, 0x7f0300d1, 0x7f0300d2 };

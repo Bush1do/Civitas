@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements MainfeedListAdapt
         final int colorRed = ContextCompat.getColor(this, R.color.red);
         final int colorPurple = ContextCompat.getColor(this, R.color.purple);
 
-        final Integer[] col={colorGreen,colorBlue,colorYellow,colorRed,colorPurple};
+        final Integer[] col={colorYellow,colorBlue,colorGreen,colorRed,colorPurple};
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

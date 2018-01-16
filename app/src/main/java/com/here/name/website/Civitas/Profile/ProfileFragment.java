@@ -84,7 +84,6 @@ public class ProfileFragment extends Fragment {
     private int mFollowingCount=0;
     private int mPostsCount=0;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -190,6 +189,7 @@ public class ProfileFragment extends Fragment {
                         Log.e(TAG, "onDataChange: NullPointerException: "+e.getMessage());
                     }
                 }
+
                 //Setup image grid
                 int gridWidth= getResources().getDisplayMetrics().widthPixels;
                 int imageWidth= gridWidth/NUM_GRID_COLUMNS;
