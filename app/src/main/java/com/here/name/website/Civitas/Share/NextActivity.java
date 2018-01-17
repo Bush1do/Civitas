@@ -2,6 +2,7 @@ package com.here.name.website.Civitas.Share;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,7 +31,7 @@ import com.here.name.website.Civitas.Utils.UniversalImageLoader;
 
 public class NextActivity extends AppCompatActivity{
 
-    private static final String TAG = "NextActivity";
+    /*private static final String TAG = "NextActivity";
 
     //Firebase
     private FirebaseAuth mAuth;
@@ -48,6 +49,7 @@ public class NextActivity extends AppCompatActivity{
     private String imgUrl;
     private Intent intent;
     private Bitmap bitmap;
+    private Uri imgUri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -161,5 +163,5 @@ public class NextActivity extends AppCompatActivity{
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
-    }
+    }*/
 }

@@ -86,7 +86,7 @@ public class FeelingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_feelings, container,false);
         gridView= (GridView) view.findViewById(R.id.emotionGridView);
-        mEmotionDatabase= FirebaseStorage.getInstance().getReference().child("emotions");
+        mEmotionDatabase= FirebaseStorage.getInstance().getReference().child("photos").child("Emotions");
         //Can delete
         mContext= getActivity();
         //imageView= (ImageView) view.findViewById(R.id.shrt);

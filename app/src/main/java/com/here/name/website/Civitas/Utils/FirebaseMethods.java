@@ -68,7 +68,7 @@ public class FirebaseMethods {
         }
     }
 
-    public void uploadNewPhoto(String photoType, final String caption, int count, final String imgUrl, Bitmap bm){
+    public void uploadNewPhoto(String photoType, final String caption,  final String imgUrl, Bitmap bm){
         Log.d(TAG, "uploadNewPhoto: Attempting to upload new photo");
 
         FilesPaths filesPaths= new FilesPaths();
@@ -78,7 +78,7 @@ public class FirebaseMethods {
 
             String user_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
             StorageReference storageReference= mStorageReference
-                    .child(filesPaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/photo" + (count+1));
+                    .child(filesPaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/photo" );
 
             //Convert image url to bitmap
             if(bm==null){

@@ -3856,10 +3856,6 @@
         "source": "C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
-        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_next.xml.flat",
-        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\activity_next.xml"
-    },
-    {
         "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_secondary_text_material_light.xml.flat",
         "source": "C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\color\\abc_secondary_text_material_light.xml"
     },

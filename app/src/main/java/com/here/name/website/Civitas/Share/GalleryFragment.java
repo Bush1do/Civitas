@@ -2,7 +2,9 @@ package com.here.name.website.Civitas.Share;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,22 +13,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.here.name.website.Civitas.Profile.AccountSettingsActivity;
 import com.here.name.website.Civitas.R;
 import com.here.name.website.Civitas.Utils.FileSearch;
 import com.here.name.website.Civitas.Utils.FilesPaths;
+import com.here.name.website.Civitas.Utils.FirebaseMethods;
 import com.here.name.website.Civitas.Utils.GridImageAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Charles on 6/29/2017.
@@ -35,19 +49,35 @@ import java.util.ArrayList;
 public class GalleryFragment extends Fragment {
     private static final String TAG = "GalleryFragment";
 
+    //Firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+    private FirebaseMethods mFirebaseMethods;
+
     //Constants
     private static final int NUM_GRID_COLUMNS=3;
+    private static final int GALLERY_REQUEST=1;
 
     //Widgets
     private GridView gridView;
     private ImageView galleryImage;
     private ProgressBar mProgressBar;
     private Spinner directorySpinner;
+    private EditText mCaption;
 
     //Variables
     private ArrayList<String> directories;
     private static final String mAppend="file://";
     private String mSelectedImage;
+    public Uri imageUri=null;
+
+    //Variables
+    //private int imageCount=0;
+    private String imgUrl;
+    private Intent intent;
+    private Bitmap bitmap;
 
     @Nullable
     @Override
@@ -60,9 +90,13 @@ public class GalleryFragment extends Fragment {
         mProgressBar.setVisibility(View.GONE);
         directories=new ArrayList<>();
 
+        mCaption=(EditText) view.findViewById(R.id.caption);
+
+        setupFirebaseAuth();
+
         Log.d(TAG, "onCreateView: Started");
 
-        ImageView shareClose= (ImageView) view.findViewById(R.id.imageViewCloseShare);
+        ImageView shareClose= (ImageView) view.findViewById(R.id.imageViewBackArrow);
         shareClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,23 +105,23 @@ public class GalleryFragment extends Fragment {
             }
         });
 
-        TextView nextScreen=(TextView) view.findViewById(R.id.textViewNext);
-        nextScreen.setOnClickListener(new View.OnClickListener() {
+        TextView share=(TextView) view.findViewById(R.id.textViewShare);
+        share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Navigating to the final share screen");
-
-                if(isRootTask()){
-                    Intent intent= new Intent(getActivity(),NextActivity.class);
-                    intent.putExtra(getString(R.string.selected_image),mSelectedImage);
-                    startActivity(intent);
-                } else{
-                    Intent intent= new Intent(getActivity(),AccountSettingsActivity.class);
-                    intent.putExtra(getString(R.string.selected_image),mSelectedImage);
-                    intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
-                    startActivity(intent);
-                    getActivity().finish();
+                //Upload to Firebase
+                Toast.makeText(getContext(), "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
+                String caption= mCaption.getText().toString();
+                if(intent.hasExtra(getString(R.string.selected_image))){
+                    imgUrl=intent.getStringExtra(getString(R.string.selected_image));
+                    mFirebaseMethods.uploadNewPhoto(getString(R.string.new_photo),caption,imgUrl,null);
                 }
+                else if(intent.hasExtra(getString(R.string.selected_bitmap))){
+                    bitmap= (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap));
+                    mFirebaseMethods.uploadNewPhoto(getString(R.string.new_photo),caption,null,bitmap);
+                }
+
             }
         });
 
@@ -104,7 +138,12 @@ public class GalleryFragment extends Fragment {
     }
 
     private void init(){
-        FilesPaths filesPaths=new FilesPaths();
+
+        Intent galleryIntent=new Intent(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, GALLERY_REQUEST);
+
+        /*FilesPaths filesPaths=new FilesPaths();
 
         //Check for other folders in "/storage/emulated/0/pictures"
         if(FileSearch.getDirectoryPaths(filesPaths.PICTURES) != null){
@@ -114,7 +153,7 @@ public class GalleryFragment extends Fragment {
         ArrayList<String> directoryNames = new ArrayList<>();
         for(int i=0;i<directoryNames.size();i++){
 
-            int index=directories.get(i).lastIndexOf("/");
+            int index=directories.get(i).lastIndexOf("image/");
 
             String string=directories.get(i).substring(index);
             directoryNames.add(string);
@@ -139,9 +178,18 @@ public class GalleryFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==GALLERY_REQUEST&& resultCode==RESULT_OK){
+            imageUri=data.getData();
+
+            galleryImage.setImageURI(imageUri);
+        }
+    }
 
     private void SetupGridView(String selectedDirectory){
         Log.d(TAG, "SetupGridView: Directory chosen: "+selectedDirectory);
@@ -206,5 +254,57 @@ public class GalleryFragment extends Fragment {
         });
     }
 
+    //-------------------------Firebase------------------------
+    //Setting up Firebase Authentication
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: Setting up firebase auth.");
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase= FirebaseDatabase.getInstance();
+        myRef= mFirebaseDatabase.getReference();
+        //Log.d(TAG, "onDataChange: Image count: "+imageCount);
 
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //imageCount= mFirebaseMethods.getImageCount(dataSnapshot);
+                //Log.d(TAG, "onDataChange: Image count: "+imageCount);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Retrieve user info from database
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
 }
