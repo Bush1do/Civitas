@@ -31,7 +31,7 @@
                     android:textSize="20sp"
                     android:textColor="@color/blue"
                     android:layout_centerVertical="true"
-                    android:id="@+id/textViewShare"/>
+                    android:id="@+id/textViewNext"/>
 
             </RelativeLayout>
 

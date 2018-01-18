@@ -11,7 +11,7 @@
         android:id="@+id/relLayout1">
 
         <!--Toolbar-->
-        <include layout="@layout/snippet_top_next_toolbar"/>
+        <include layout="@layout/snippet_top_gallery_toolbar"/>
 
     </RelativeLayout>
 
@@ -41,6 +41,8 @@
         </RelativeLayout>
 
         <EditText
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

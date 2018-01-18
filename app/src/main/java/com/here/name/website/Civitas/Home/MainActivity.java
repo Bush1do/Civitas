@@ -3,7 +3,9 @@ package com.here.name.website.Civitas.Home;
 import android.animation.ArgbEvaluator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -23,6 +25,8 @@ import com.here.name.website.Civitas.Chat.FriendsFragment;
 import com.here.name.website.Civitas.Login.LoginActivity;
 import com.here.name.website.Civitas.Models.Photo;
 import com.here.name.website.Civitas.R;
+import com.here.name.website.Civitas.Share.PhotoFragment;
+import com.here.name.website.Civitas.Share.ShareActivity;
 import com.here.name.website.Civitas.Utils.BottomNavigationHelper;
 import com.here.name.website.Civitas.Utils.MainfeedListAdapter;
 import com.here.name.website.Civitas.Utils.SectionsPagerAdapter;
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements MainfeedListAdapt
         final View background = findViewById(R.id.activityMain_Background);
 
         final SectionsPagerAdapter adapter= new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MessagesFragment()); //index 0
+        adapter.addFragment(new PhotoFragment()); //index 0
         adapter.addFragment(new HomeFragment()); //index 1
         adapter.addFragment(new FeelingsFragment()); //index 2
         adapter.addFragment(new FriendsFragment()); //index 3
@@ -167,6 +171,42 @@ public class MainActivity extends AppCompatActivity implements MainfeedListAdapt
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_name);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_messages);*/
+    }
+
+    //Check an array of permissions
+    public boolean CheckPermissionsArray(String[] permissions){
+        Log.d(TAG, "CheckPermissionsArray: Checking permissions array");
+        for(int i=0;i<permissions.length;i++){
+            String check=permissions[i];
+            if(!CheckPermissions(check)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int getTask(){
+        Log.d(TAG, "getTask: "+getIntent().getFlags());
+        return getIntent().getFlags();
+    }
+
+    //Check if a single permission is verified
+    public boolean CheckPermissions(String permission) {
+        Log.d(TAG, "CheckPermissions: Checking permission");
+
+        int permissionRequest= ActivityCompat.checkSelfPermission(MainActivity.this,permission);
+
+        if(permissionRequest!= PackageManager.PERMISSION_GRANTED){
+            Log.d(TAG, "CheckPermissions: \n Permission denied for: "+permission);
+            return false;
+        }else{
+            Log.d(TAG, "CheckPermissions: \n Permission granted for: "+permission);
+            return true;
+        }
+    }
+
+    public int getCurrentTabNumber(){
+        return mViewPager.getCurrentItem();
     }
 
     //Bottom Navigation Setup;

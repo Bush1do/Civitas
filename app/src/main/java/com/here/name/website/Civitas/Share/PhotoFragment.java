@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.here.name.website.Civitas.Home.MainActivity;
 import com.here.name.website.Civitas.Profile.AccountSettingsActivity;
 import com.here.name.website.Civitas.R;
 import com.here.name.website.Civitas.Utils.Permissions;
+
+import static com.here.name.website.Civitas.Share.ShareActivity.ACTIVITY_NUM;
 
 /**
  * Created by Charles on 6/29/2017.
@@ -25,7 +28,6 @@ public class PhotoFragment extends Fragment {
 
     //Constant
     private static final int galleryFragNum=0;
-    private static final int photoFragNum=1;
     private static final int CAMERA_REQUEST_CODE=4;
 
     @Nullable
@@ -42,13 +44,13 @@ public class PhotoFragment extends Fragment {
                 Log.d(TAG, "onClick: Launching camera");
 
                 //ShareActivity.getCurrentTabNumber();
-                if(((ShareActivity)getActivity()).getCurrentTabNumber()==photoFragNum){
-                    if(((ShareActivity)getActivity()).CheckPermissions(Permissions.CAMERA_PERMISSION[0])){
+                if(((MainActivity)getActivity()).getCurrentTabNumber()==0){
+                    if(((MainActivity)getActivity()).CheckPermissions(Permissions.CAMERA_PERMISSION[0])){
                         Log.d(TAG, "onClick: Starting Camera");
                         Intent cameraIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(cameraIntent,CAMERA_REQUEST_CODE);
                     } else{
-                        Intent intent=new Intent(getActivity(),ShareActivity.class);
+                        Intent intent=new Intent(getActivity(),MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }
@@ -59,12 +61,18 @@ public class PhotoFragment extends Fragment {
         return view;
     }
 
-    private boolean isRootTask(){
-        if(((ShareActivity)getActivity()).getTask()==0){
+    public static boolean isRootTask(){
+        if(ACTIVITY_NUM==2){
             return true;
         } else{
             return false;
         }
+        /*
+        if(((MainActivity)getActivity()).getTask()==0){
+            return true;
+        } else{
+            return false;
+        }*/
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ import com.here.name.website.Civitas.Utils.UniversalImageLoader;
 
 public class NextActivity extends AppCompatActivity{
 
-    /*private static final String TAG = "NextActivity";
+    private static final String TAG = "NextActivity";
 
     //Firebase
     private FirebaseAuth mAuth;
@@ -42,6 +43,7 @@ public class NextActivity extends AppCompatActivity{
 
     //Widgets
     private EditText mCaption;
+    private ProgressBar mProg;
 
     //Variables
     private static final String mAppend="file://";
@@ -55,6 +57,7 @@ public class NextActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next);
+        mProg.setVisibility(View.VISIBLE);
         mFirebaseMethods=new FirebaseMethods(NextActivity.this);
         mCaption=(EditText) findViewById(R.id.caption);
 
@@ -69,7 +72,7 @@ public class NextActivity extends AppCompatActivity{
             }
         });
 
-        TextView share=(TextView) findViewById(R.id.textViewShare);
+        TextView share=(TextView) findViewById(R.id.textViewNext);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,7 +100,7 @@ public class NextActivity extends AppCompatActivity{
     //Gets url from the incoming intent and displays the chosen image
     private void setImage(){
         intent=getIntent();
-        ImageView image= (ImageView) findViewById(R.id.imageShare);
+        ImageView image= (ImageView) findViewById(R.id.galleryImageView);
 
         if(intent.hasExtra(getString(R.string.selected_image))){
             imgUrl=intent.getStringExtra(getString(R.string.selected_image));
@@ -109,6 +112,8 @@ public class NextActivity extends AppCompatActivity{
             Log.d(TAG, "setImage: Got new bitmap");
             image.setImageBitmap(bitmap);
         }
+        mProg.setVisibility(View.GONE);
+
     }
 
     //-------------------------Firebase------------------------
@@ -163,5 +168,5 @@ public class NextActivity extends AppCompatActivity{
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
-    }*/
+    }
 }

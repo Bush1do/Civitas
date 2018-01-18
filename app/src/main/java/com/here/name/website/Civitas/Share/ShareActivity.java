@@ -1,6 +1,7 @@
 package com.here.name.website.Civitas.Share;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.here.name.website.Civitas.Home.MainActivity;
+import com.here.name.website.Civitas.Login.LoginActivity;
 import com.here.name.website.Civitas.R;
 import com.here.name.website.Civitas.Utils.Permissions;
 import com.here.name.website.Civitas.Utils.SectionsPagerAdapter;
@@ -23,7 +26,7 @@ public class ShareActivity extends AppCompatActivity {
     private Context mContext= ShareActivity.this;
 
     //Constants
-    private static final int ACTIVITY_NUM=2;
+    public static final int ACTIVITY_NUM=2;
     private static final int VERIFY_PERMISSIONS_REQUEST=1;
 
     private ViewPager mViewPager;
@@ -36,6 +39,8 @@ public class ShareActivity extends AppCompatActivity {
 
         if(CheckPermissionsArray(Permissions.PERMISSIONS)){
             setupViewPager();
+            //Intent intent= new Intent(ShareActivity.this,NextActivity.class);
+            //startActivity(intent);
         }else{
             verifyPermissions(Permissions.PERMISSIONS);
         }
@@ -45,22 +50,22 @@ public class ShareActivity extends AppCompatActivity {
     //Return current tab number
     //0= GalleryFragment
     //1= PhotoFragment
-    public int getCurrentTabNumber(){
-        return mViewPager.getCurrentItem();
-    }
+//    public int getCurrentTabNumber(){
+//        return mViewPager.getCurrentItem();
+//    }
 
     private void setupViewPager(){
         SectionsPagerAdapter adapter=new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GalleryFragment());
-        adapter.addFragment(new PhotoFragment());
+        //adapter.addFragment(new PhotoFragment());
 
         mViewPager=(ViewPager) findViewById(R.id.viewpagerContainer);
         mViewPager.setAdapter(adapter);
-        TabLayout tabLayout=(TabLayout) findViewById(R.id.tabsBottom);
+        /*TabLayout tabLayout=(TabLayout) findViewById(R.id.tabsBottom);
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.getTabAt(0).setText(getString(R.string.gallery));
-        tabLayout.getTabAt(1).setText(getString(R.string.photo));
+        tabLayout.getTabAt(1).setText(getString(R.string.photo));*/
 
     }
 
