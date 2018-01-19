@@ -38,10 +38,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
-import static com.here.name.website.Civitas.Share.ShareActivity.ACTIVITY_NUM;
 
 /**
  * Created by Charles on 6/29/2017.
@@ -58,7 +58,6 @@ public class GalleryFragment extends Fragment {
     private FirebaseMethods mFirebaseMethods;
 
     //Constants
-    private static final int NUM_GRID_COLUMNS=3;
     private static final int GALLERY_REQUEST=1;
 
     //Widgets
@@ -71,7 +70,6 @@ public class GalleryFragment extends Fragment {
     //private ArrayList<String> directories;
     private static final String mAppend="file://";
     private String mSelectedImage;
-    public Uri imageUri=null;
 
     //Variables
     private int imageCount=0;
@@ -85,13 +83,14 @@ public class GalleryFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_gallery, container,false);
         galleryImage=(ImageView) view.findViewById(R.id.galleryImageView);
         gridView=(GridView) view.findViewById(R.id.gridView);
-        mProgressBar=(ProgressBar) view.findViewById(R.id.progressBar);
+        mProgressBar=(ProgressBar) view.findViewById(R.id.progressBarGallery);
         mProgressBar.setVisibility(View.GONE);
         //directories=new ArrayList<>();
 
         mCaption=(EditText) view.findViewById(R.id.caption);
 
-        setupFirebaseAuth();
+        //setupFirebaseAuth();
+        //init();
 
         Log.d(TAG, "onCreateView: Started");
 
@@ -190,37 +189,37 @@ public class GalleryFragment extends Fragment {
         });*/
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==GALLERY_REQUEST&& resultCode==RESULT_OK){
-//            imageUri=data.getData();
-//            galleryImage.setImageURI(imageUri);
-//            //Move to final share screen to publish photo
-//
-//            if(PhotoFragment.isRootTask()){
-//                try {
-//                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-//                    Intent intent= new Intent(getActivity(),NextActivity.class);
-//                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-//                    startActivity(intent);
-//                } catch (NullPointerException e){
-//                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-//                }
-//            } else{
-//                try {
-//                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-//                    Intent intent= new Intent(getActivity(),AccountSettingsActivity.class);
-//                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-//                    intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
-//                    startActivity(intent);
-//                    getActivity().finish();
-//                } catch (NullPointerException e){
-//                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-//                }
-//            }
-//        }
-//    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==GALLERY_REQUEST&& resultCode==RESULT_OK){
+            Uri imageUri=data.getData();
+            galleryImage.setImageURI(imageUri);
+
+            //Move to final share screen to publish photo
+            if(PhotoFragment.isRootTask()){
+                try {
+                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
+                    Intent intent= new Intent(getActivity(),NextActivity.class);
+                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
+                    startActivity(intent);
+                } catch (NullPointerException e){
+                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
+                }
+            } else{
+                try {
+                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
+                    Intent intent= new Intent(getActivity(),AccountSettingsActivity.class);
+                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
+                    intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
+                    startActivity(intent);
+                    getActivity().finish();
+                } catch (NullPointerException e){
+                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
+                }
+            }
+        }
+    }
 
 //    private void SetupGridView(String selectedDirectory){
 //        Log.d(TAG, "SetupGridView: Directory chosen: "+selectedDirectory);
@@ -285,57 +284,57 @@ public class GalleryFragment extends Fragment {
 //        });
 //    }
 
-    //-------------------------Firebase------------------------
-    //Setting up Firebase Authentication
-    private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: Setting up firebase auth.");
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase= FirebaseDatabase.getInstance();
-        myRef= mFirebaseDatabase.getReference();
-        //Log.d(TAG, "onDataChange: Image count: "+imageCount);
-
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //imageCount= mFirebaseMethods.getImageCount(dataSnapshot);
-                //Log.d(TAG, "onDataChange: Image count: "+imageCount);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                //Retrieve user info from database
-            }
-        });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
+//    //-------------------------Firebase------------------------
+//    //Setting up Firebase Authentication
+//    private void setupFirebaseAuth(){
+//        Log.d(TAG, "setupFirebaseAuth: Setting up firebase auth.");
+//        mAuth = FirebaseAuth.getInstance();
+//        mFirebaseDatabase= FirebaseDatabase.getInstance();
+//        myRef= mFirebaseDatabase.getReference();
+//        Log.d(TAG, "onDataChange: Image count: "+imageCount);
+//
+//
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//
+//                if (user != null) {
+//                    // User is signed in
+//                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+//                } else {
+//                    // User is signed out
+//                    Log.d(TAG, "onAuthStateChanged:signed_out");
+//                }
+//                // ...
+//            }
+//        };
+//
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                imageCount= mFirebaseMethods.getImageCount(dataSnapshot);
+//                Log.d(TAG, "onDataChange: Image count: "+imageCount);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                //Retrieve user info from database
+//            }
+//        });
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        mAuth.addAuthStateListener(mAuthListener);
+//
+//    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        if (mAuthListener != null) {
+//            mAuth.removeAuthStateListener(mAuthListener);
+//        }
+//    }
 }

@@ -38,7 +38,7 @@ public class ShareActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Started.");
 
         if(CheckPermissionsArray(Permissions.PERMISSIONS)){
-            setupViewPager();
+            //setupViewPager();
             //Intent intent= new Intent(ShareActivity.this,NextActivity.class);
             //startActivity(intent);
         }else{
@@ -56,7 +56,7 @@ public class ShareActivity extends AppCompatActivity {
 
     private void setupViewPager(){
         SectionsPagerAdapter adapter=new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new GalleryFragment());
+        //adapter.addFragment(new GalleryFragment());
         //adapter.addFragment(new PhotoFragment());
 
         mViewPager=(ViewPager) findViewById(R.id.viewpagerContainer);
