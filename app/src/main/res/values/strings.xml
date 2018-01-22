@@ -62,6 +62,8 @@
     <string name="main_activity">Main Activity</string>
 
     <!-- Strings -->
+    @string/no_account_make_one
+    <string name="no_account_make_one">No account? Make one!</string>
     <string name="gallery">Gallery</string>
     <string name="photo">Photo</string>
     <string name="open_camera">Open Camera</string>
