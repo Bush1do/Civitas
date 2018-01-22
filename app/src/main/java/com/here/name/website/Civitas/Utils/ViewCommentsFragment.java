@@ -95,7 +95,7 @@ public class ViewCommentsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!mComment.getText().toString().equals("")){
-                    Log.d(TAG, "onClick: Attempting to submit new comment.");
+                    Log.d(TAG, "onClick: Submitting new comment.");
                     addNewComment(mComment.getText().toString());
 
                     mComment.setText("");
@@ -118,7 +118,7 @@ public class ViewCommentsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!mComment.getText().toString().equals("")){
-                    Log.d(TAG, "onClick: Attempting to submit new comment.");
+                    Log.d(TAG, "onClick: Submitting new comment.");
                     addNewComment(mComment.getText().toString());
 
                     mComment.setText("");

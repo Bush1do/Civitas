@@ -3524,6 +3524,10 @@
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.0.4.aar\\3519b5ae291a96eae5bc42fe361bcb4f\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_cam_next.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\activity_cam_next.xml"
+    },
+    {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_tint_seek_thumb.xml.flat",
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\color\\abc_tint_seek_thumb.xml"
     },
@@ -8742,6 +8746,10 @@
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_edittext.xml.flat",
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\color-v23\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_goto_activity.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\goto_activity.xml"
     },
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_confirm_password.xml.flat",

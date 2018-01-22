@@ -30,14 +30,14 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/galleryImageView"
+                android:id="@+id/nextImageView"
                 android:scaleType="centerCrop"/>
 
-            <ProgressBar
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/progressBarNext"
-                android:layout_centerInParent="true"/>
+            <!--<ProgressBar-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:id="@+id/progressBarNext"-->
+                <!--android:layout_centerInParent="true"/>-->
         </RelativeLayout>
 
         <EditText

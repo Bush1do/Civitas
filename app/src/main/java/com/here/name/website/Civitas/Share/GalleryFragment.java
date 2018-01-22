@@ -42,6 +42,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
+import static com.here.name.website.Civitas.Share.ShareActivity.ACTIVITY_NUM;
 
 /**
  * Created by Charles on 6/29/2017.
@@ -50,24 +51,16 @@ import static android.app.Activity.RESULT_OK;
 public class GalleryFragment extends Fragment {
     private static final String TAG = "GalleryFragment";
 
-    //Firebase
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference myRef;
-    private FirebaseMethods mFirebaseMethods;
-
     //Constants
     private static final int GALLERY_REQUEST=1;
 
     //Widgets
-    private GridView gridView;
+    //private GridView gridView;
     private ImageView galleryImage;
     private ProgressBar mProgressBar;
     private EditText mCaption;
 
     //Variables
-    //private ArrayList<String> directories;
     private static final String mAppend="file://";
     private String mSelectedImage;
 
@@ -82,19 +75,13 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_gallery, container,false);
         galleryImage=(ImageView) view.findViewById(R.id.galleryImageView);
-        gridView=(GridView) view.findViewById(R.id.gridView);
+        //gridView=(GridView) view.findViewById(R.id.gridView);
         mProgressBar=(ProgressBar) view.findViewById(R.id.progressBarGallery);
         mProgressBar.setVisibility(View.GONE);
-        //directories=new ArrayList<>();
-
-        mCaption=(EditText) view.findViewById(R.id.caption);
-
-        //setupFirebaseAuth();
-        //init();
 
         Log.d(TAG, "onCreateView: Started");
 
-        ImageView shareClose= (ImageView) view.findViewById(R.id.imagefViewCloseShare);
+        ImageView shareClose= (ImageView) view.findViewById(R.id.imageViewCloseGallery);
         shareClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,27 +96,18 @@ public class GalleryFragment extends Fragment {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Navigating to the final share screen");
 
-                if(PhotoFragment.isRootTask()){
-                    try {
-                        Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                        Intent intent= new Intent(getActivity(),NextActivity.class);
-                        intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                        startActivity(intent);
-                    } catch (NullPointerException e){
-                        Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                    }
-                } else{
-                    try {
-                        Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                        Intent intent= new Intent(getActivity(),AccountSettingsActivity.class);
-                        intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                        intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
-                        startActivity(intent);
-                        getActivity().finish();
-                    } catch (NullPointerException e){
-                        Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                    }
+                if(isRootTask()){
+                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
+                    startActivity(intent);
+                    getActivity().finish();
                 }
+
             }
         });
 
@@ -137,13 +115,25 @@ public class GalleryFragment extends Fragment {
         return view;
     }
 
-//    public boolean isRootTask(){
-//        if(ACTIVITY_NUM==2){
-//            return true;
-//        } else{
-//            return false;
-//        }
-//    }
+    private boolean isRootTask(){
+        if(((ShareActivity)getActivity()).getTask() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==GALLERY_REQUEST) {
+
+            Uri imageUri = data.getData();
+            galleryImage.setImageURI(imageUri);
+        }
+    }
 
     private void init(){
 
@@ -189,37 +179,6 @@ public class GalleryFragment extends Fragment {
         });*/
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLERY_REQUEST&& resultCode==RESULT_OK){
-            Uri imageUri=data.getData();
-            galleryImage.setImageURI(imageUri);
-
-            //Move to final share screen to publish photo
-            if(PhotoFragment.isRootTask()){
-                try {
-                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                    Intent intent= new Intent(getActivity(),NextActivity.class);
-                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                    startActivity(intent);
-                } catch (NullPointerException e){
-                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                }
-            } else{
-                try {
-                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                    Intent intent= new Intent(getActivity(),AccountSettingsActivity.class);
-                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                    intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
-                    startActivity(intent);
-                    getActivity().finish();
-                } catch (NullPointerException e){
-                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                }
-            }
-        }
-    }
 
 //    private void SetupGridView(String selectedDirectory){
 //        Log.d(TAG, "SetupGridView: Directory chosen: "+selectedDirectory);
@@ -254,7 +213,7 @@ public class GalleryFragment extends Fragment {
 //        });
 //    }
 
-//    private void setImage(String imgURL, ImageView image, String append){
+//    private void setGridImage(String imgURL, ImageView image, String append){
 //        Log.d(TAG, "Image: Setting Image");
 //
 //        ImageLoader imageLoader= ImageLoader.getInstance();
@@ -284,57 +243,4 @@ public class GalleryFragment extends Fragment {
 //        });
 //    }
 
-//    //-------------------------Firebase------------------------
-//    //Setting up Firebase Authentication
-//    private void setupFirebaseAuth(){
-//        Log.d(TAG, "setupFirebaseAuth: Setting up firebase auth.");
-//        mAuth = FirebaseAuth.getInstance();
-//        mFirebaseDatabase= FirebaseDatabase.getInstance();
-//        myRef= mFirebaseDatabase.getReference();
-//        Log.d(TAG, "onDataChange: Image count: "+imageCount);
-//
-//
-//        mAuthListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = firebaseAuth.getCurrentUser();
-//
-//                if (user != null) {
-//                    // User is signed in
-//                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-//                } else {
-//                    // User is signed out
-//                    Log.d(TAG, "onAuthStateChanged:signed_out");
-//                }
-//                // ...
-//            }
-//        };
-//
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                imageCount= mFirebaseMethods.getImageCount(dataSnapshot);
-//                Log.d(TAG, "onDataChange: Image count: "+imageCount);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                //Retrieve user info from database
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        mAuth.addAuthStateListener(mAuthListener);
-//
-//    }
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        if (mAuthListener != null) {
-//            mAuth.removeAuthStateListener(mAuthListener);
-//        }
-//    }
 }

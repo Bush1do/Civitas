@@ -13,7 +13,6 @@ import com.here.name.website.Civitas.Home.MainActivity;
 import com.here.name.website.Civitas.Profile.ProfileActivity;
 import com.here.name.website.Civitas.R;
 import com.here.name.website.Civitas.Search.SearchActivity;
-import com.here.name.website.Civitas.Share.NextActivity;
 import com.here.name.website.Civitas.Share.ShareActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -49,7 +48,7 @@ public class BottomNavigationHelper {
                         break;
 
                     case R.id.icon_circle:
-                        Intent intent3= new Intent(context, NextActivity.class);//ACTIVITY_NUM=2
+                        Intent intent3= new Intent(context, ShareActivity.class);//ACTIVITY_NUM=2
                         context.startActivity(intent3);
                         callingActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                         break;

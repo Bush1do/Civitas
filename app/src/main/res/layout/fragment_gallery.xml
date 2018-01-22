@@ -20,6 +20,7 @@
         android:layout_height="match_parent"
         android:weightSum="100"
         android:orientation="vertical"
+        android:background="@color/white"
         android:layout_below="@+id/relLayout1">
 
         <RelativeLayout
@@ -40,16 +41,17 @@
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
 
-        <EditText
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+        <TextView
+            android:padding="20dp"
             android:id="@+id/caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:hint="@string/writeadesc"
+            android:text="@string/use_this_image"
             android:layout_centerVertical="true"
-            android:background="@null" />
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
 
     </LinearLayout>
 

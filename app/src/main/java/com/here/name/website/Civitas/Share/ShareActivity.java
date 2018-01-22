@@ -23,7 +23,6 @@ import com.here.name.website.Civitas.Utils.SectionsPagerAdapter;
 
 public class ShareActivity extends AppCompatActivity {
     private static final String TAG = "ShareActivity";
-    private Context mContext= ShareActivity.this;
 
     //Constants
     public static final int ACTIVITY_NUM=2;
@@ -38,9 +37,9 @@ public class ShareActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Started.");
 
         if(CheckPermissionsArray(Permissions.PERMISSIONS)){
-            //setupViewPager();
-            //Intent intent= new Intent(ShareActivity.this,NextActivity.class);
-            //startActivity(intent);
+            setupViewPager();
+            Intent intent= new Intent(ShareActivity.this,NextActivity.class);
+            startActivity(intent);
         }else{
             verifyPermissions(Permissions.PERMISSIONS);
         }
@@ -56,7 +55,7 @@ public class ShareActivity extends AppCompatActivity {
 
     private void setupViewPager(){
         SectionsPagerAdapter adapter=new SectionsPagerAdapter(getSupportFragmentManager());
-        //adapter.addFragment(new GalleryFragment());
+        adapter.addFragment(new GalleryFragment());
         //adapter.addFragment(new PhotoFragment());
 
         mViewPager=(ViewPager) findViewById(R.id.viewpagerContainer);

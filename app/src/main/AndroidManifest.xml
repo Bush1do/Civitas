@@ -43,6 +43,8 @@
         <activity android:name="com.here.name.website.Civitas.Login.RegisterActivity"></activity>
         <activity android:name="com.here.name.website.Civitas.Login.LoginActivity"></activity>
         <activity android:name="com.here.name.website.Civitas.Share.NextActivity"></activity>
+        <activity android:name="com.here.name.website.Civitas.Share.CameraNextActivity"></activity>
+        <activity android:name="com.here.name.website.Civitas.Share.GotoActivity"></activity>
 
         <!-- For profile photo crop
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
