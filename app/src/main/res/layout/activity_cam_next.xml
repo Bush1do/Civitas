@@ -33,11 +33,6 @@
                 android:id="@+id/camNextImageView"
                 android:scaleType="centerCrop"/>
 
-            <!--<ProgressBar-->
-                <!--android:layout_width="100dp"-->
-                <!--android:layout_height="100dp"-->
-                <!--android:id="@+id/progressBarNext"-->
-                <!--android:layout_centerInParent="true"/>-->
         </RelativeLayout>
 
         <EditText

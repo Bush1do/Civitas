@@ -13,6 +13,7 @@ import com.here.name.website.Civitas.Home.MainActivity;
 import com.here.name.website.Civitas.Profile.ProfileActivity;
 import com.here.name.website.Civitas.R;
 import com.here.name.website.Civitas.Search.SearchActivity;
+import com.here.name.website.Civitas.Share.NextActivity;
 import com.here.name.website.Civitas.Share.ShareActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 

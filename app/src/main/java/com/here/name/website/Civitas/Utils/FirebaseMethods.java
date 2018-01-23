@@ -69,7 +69,7 @@ public class FirebaseMethods {
     }
 
     public void uploadNewPhoto(String photoType, final String caption, int count, final String imgUrl, Bitmap bm){
-        Log.d(TAG, "uploadNewPhoto: Uploading new photo");
+        Log.d(TAG, "uploadNewPhoto: Attempting to upload new photo");
 
         FilesPaths filesPaths= new FilesPaths();
         //case1 New photo

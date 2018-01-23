@@ -23,6 +23,7 @@ import com.here.name.website.Civitas.Utils.SectionsPagerAdapter;
 
 public class ShareActivity extends AppCompatActivity {
     private static final String TAG = "ShareActivity";
+    private Context mContext= ShareActivity.this;
 
     //Constants
     public static final int ACTIVITY_NUM=2;
@@ -38,8 +39,6 @@ public class ShareActivity extends AppCompatActivity {
 
         if(CheckPermissionsArray(Permissions.PERMISSIONS)){
             setupViewPager();
-            Intent intent= new Intent(ShareActivity.this,NextActivity.class);
-            startActivity(intent);
         }else{
             verifyPermissions(Permissions.PERMISSIONS);
         }

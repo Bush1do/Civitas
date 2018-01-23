@@ -13,9 +13,10 @@
 
     </View>
 
-   <include layout="@layout/center_feelings"/>
+   <!--<include layout="@layout/center_feelings"/>-->
 
     <TextView
+        android:id="@+id/howdoufel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="How do you feel today?"

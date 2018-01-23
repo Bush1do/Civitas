@@ -42,7 +42,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
-import static com.here.name.website.Civitas.Share.ShareActivity.ACTIVITY_NUM;
 
 /**
  * Created by Charles on 6/29/2017.
@@ -52,36 +51,36 @@ public class GalleryFragment extends Fragment {
     private static final String TAG = "GalleryFragment";
 
     //Constants
-    private static final int GALLERY_REQUEST=1;
+    //private static final int GALLERY_REQUEST=1;
+    private static final int NUM_GRID_COLUMNS = 3;
 
     //Widgets
-    //private GridView gridView;
+    private GridView gridView;
     private ImageView galleryImage;
     private ProgressBar mProgressBar;
-    private EditText mCaption;
+    private Spinner directorySpinner;
 
     //Variables
-    private static final String mAppend="file://";
+    private ArrayList<String> directories;
+    private static final String mAppend="file:/";
     private String mSelectedImage;
-
-    //Variables
-    private int imageCount=0;
-    private String imgUrl;
-    private Intent intent;
-    private Bitmap bitmap;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_gallery, container,false);
         galleryImage=(ImageView) view.findViewById(R.id.galleryImageView);
-        //gridView=(GridView) view.findViewById(R.id.gridView);
+        gridView=(GridView) view.findViewById(R.id.gallerygridView);
         mProgressBar=(ProgressBar) view.findViewById(R.id.progressBarGallery);
         mProgressBar.setVisibility(View.GONE);
+        directories=new ArrayList<>();
+        directorySpinner = (Spinner) view.findViewById(R.id.spinnerDirectory);
 
         Log.d(TAG, "onCreateView: Started");
 
-        ImageView shareClose= (ImageView) view.findViewById(R.id.imageViewCloseGallery);
+        //init();
+
+        ImageView shareClose= (ImageView) view.findViewById(R.id.imagefViewCloseShare);
         shareClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +106,6 @@ public class GalleryFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }
-
             }
         });
 
@@ -124,24 +122,13 @@ public class GalleryFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==GALLERY_REQUEST) {
-
-            Uri imageUri = data.getData();
-            galleryImage.setImageURI(imageUri);
-        }
-    }
-
     private void init(){
 
-        Intent galleryIntent=new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, GALLERY_REQUEST);
+//        Intent galleryIntent=new Intent(Intent.ACTION_GET_CONTENT);
+//        galleryIntent.setType("image/*");
+//        startActivityForResult(galleryIntent, GALLERY_REQUEST);
 
-        /*FilesPaths filesPaths=new FilesPaths();
+        FilesPaths filesPaths=new FilesPaths();
 
         //Check for other folders in "/storage/emulated/0/pictures"
         if(FileSearch.getDirectoryPaths(filesPaths.PICTURES) != null){
@@ -176,71 +163,68 @@ public class GalleryFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });*/
+        });
     }
 
+    private void SetupGridView(String selectedDirectory){
+        Log.d(TAG, "SetupGridView: Directory chosen: "+selectedDirectory);
+        final ArrayList<String> imageURLS= FileSearch.getFilePath(selectedDirectory);
 
-//    private void SetupGridView(String selectedDirectory){
-//        Log.d(TAG, "SetupGridView: Directory chosen: "+selectedDirectory);
-//        final ArrayList<String> imageURLS= FileSearch.getFilePath(selectedDirectory);
-//
-//        //Set grid column width
-//        int gridWidth=getResources().getDisplayMetrics().widthPixels;
-//        int imageWidth=gridWidth/NUM_GRID_COLUMNS;
-//        gridView.setColumnWidth(imageWidth);
-//
-//        //Use grid adapter to adapt images to gridView file://
-//        GridImageAdapter adapter=new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,mAppend,imageURLS);
-//        gridView.setAdapter(adapter);
-//
-//        //Set first image to display
-//        try {
-//            setImage(imageURLS.get(0),galleryImage,mAppend);
-//            mSelectedImage=imageURLS.get(0);
-//        }catch (ArrayIndexOutOfBoundsException e){
-//            Log.e(TAG, "SetupGridView: ArrayIndexOutOfBoundsException: "+ e.getMessage() );
-//        }
-//
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Log.d(TAG, "onItemClick: Selected an image: "+imageURLS.get(position));
-//
-//                setImage(imageURLS.get(position),galleryImage,mAppend);
-//                mSelectedImage=imageURLS.get(position);
-//
-//            }
-//        });
-//    }
+        //Set grid column width
+        int gridWidth=getResources().getDisplayMetrics().widthPixels;
+        int imageWidth=gridWidth/NUM_GRID_COLUMNS;
+        gridView.setColumnWidth(imageWidth);
 
-//    private void setGridImage(String imgURL, ImageView image, String append){
-//        Log.d(TAG, "Image: Setting Image");
-//
-//        ImageLoader imageLoader= ImageLoader.getInstance();
-//        imageLoader.displayImage(append + imgURL, image, new ImageLoadingListener() {
-//            @Override
-//            public void onLoadingStarted(String imageUri, View view) {
-//                mProgressBar.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-//                mProgressBar.setVisibility(View.INVISIBLE);
-//
-//            }
-//
-//            @Override
-//            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//                mProgressBar.setVisibility(View.INVISIBLE);
-//
-//            }
-//
-//            @Override
-//            public void onLoadingCancelled(String imageUri, View view) {
-//                mProgressBar.setVisibility(View.INVISIBLE);
-//
-//            }
-//        });
-//    }
+        //Use grid adapter to adapt images to gridView file://
+        GridImageAdapter adapter=new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,mAppend,imageURLS);
+        gridView.setAdapter(adapter);
+
+        //Set first image to display
+        try {
+            setImage(imageURLS.get(0),galleryImage,mAppend);
+            mSelectedImage=imageURLS.get(0);
+        }catch (ArrayIndexOutOfBoundsException e){
+            Log.e(TAG, "SetupGridView: ArrayIndexOutOfBoundsException: "+ e.getMessage() );
+        }
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.d(TAG, "onItemClick: Selected an image: "+imageURLS.get(position));
+
+                setImage(imageURLS.get(position),galleryImage,mAppend);
+                mSelectedImage=imageURLS.get(position);
+
+            }
+        });
+    }
+
+    private void setImage(String imgURL, ImageView image, String append){
+        Log.d(TAG, "setImage: setting image");
+
+        ImageLoader imageLoader = ImageLoader.getInstance();
+
+        imageLoader.displayImage(append + imgURL, image, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+                mProgressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
 
 }

@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: Logging in");
+                Log.d(TAG, "onClick: attempting to log in.");
 
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();

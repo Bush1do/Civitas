@@ -62,7 +62,6 @@
         <activity android:name="com.here.name.website.Civitas.Login.LoginActivity" />
         <activity android:name="com.here.name.website.Civitas.Share.NextActivity" />
         <activity android:name="com.here.name.website.Civitas.Share.CameraNextActivity" />
-        <activity android:name="com.here.name.website.Civitas.Share.GotoActivity" />
 
         <!--
         For profile photo crop

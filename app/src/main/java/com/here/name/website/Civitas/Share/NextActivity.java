@@ -48,24 +48,37 @@ public class NextActivity extends AppCompatActivity{
 
     //Widgets
     private EditText mCaption;
+    private ProgressBar mProg;
+    private ImageView mImage;
 
     //Constants
     private static final int GALLERY_REQUEST=1;
+    public static final int ACTIVITY_NUM=2;
+    private static final int VERIFY_PERMISSIONS_REQUEST=1;
 
     //Variables
-    private String mAppend = "image/";
+    private static final String mAppend="file://";
     private int imageCount=0;
     private String imgUrl;
     private Intent intent;
     private Bitmap bitmap;
+    private Uri imgUri;
+    private Context mCont=NextActivity.this;
+    private String mSelectedImage;
+
+    //MERGING GALLERYFRAG AND NEXTACTIVITY
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next);
+        mProg= (ProgressBar) findViewById(R.id.progressBarNext);
+        mProg.setVisibility(View.VISIBLE);
         mFirebaseMethods=new FirebaseMethods(NextActivity.this);
         mCaption=(EditText) findViewById(R.id.caption);
-        //mImage=(ImageView) findViewById(R.id.nextImageView);
+        mImage= (ImageView) findViewById(R.id.galleryImageView);
 
         setupFirebaseAuth();
 
@@ -82,10 +95,10 @@ public class NextActivity extends AppCompatActivity{
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: navigating to the final share screen.");
-                //upload the image to firebase
+                Log.d(TAG, "onClick: Navigating to the final share screen");
+                //Upload to Firebase
                 Toast.makeText(NextActivity.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
-                String caption = mCaption.getText().toString();
+                String caption= mCaption.getText().toString();
 
                 if(intent.hasExtra(getString(R.string.selected_image))){
                     imgUrl = intent.getStringExtra(getString(R.string.selected_image));
@@ -96,26 +109,16 @@ public class NextActivity extends AppCompatActivity{
                     mFirebaseMethods.uploadNewPhoto(getString(R.string.new_photo), caption, imageCount, null,bitmap);
                 }
 
-
             }
 
         });
-
+        //init();
         setImage();
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==GALLERY_REQUEST) {
-//            Uri imageUri = data.getData();
-//            mImage.setImageURI(imageUri);
-//        }
-//    }
 
-    /**
-     * gets the image url from the incoming intent and displays the chosen image
-     */
+
+    //Gets url from the incoming intent and displays the chosen image
     private void setImage(){
         intent = getIntent();
         ImageView image = (ImageView) findViewById(R.id.nextImageView);
@@ -130,16 +133,11 @@ public class NextActivity extends AppCompatActivity{
             Log.d(TAG, "setImage: got new bitmap");
             image.setImageBitmap(bitmap);
         }
+        mProg.setVisibility(View.GONE);
     }
 
-
-    /*
-     ------------------------------------ Firebase ---------------------------------------------
-     */
-
-    /**
-     * Setup the firebase auth object
-     */
+    //-------------------------Firebase------------------------
+    //Setting up Firebase Authentication
     private void setupFirebaseAuth(){
         Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
         mAuth = FirebaseAuth.getInstance();
@@ -152,6 +150,7 @@ public class NextActivity extends AppCompatActivity{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
+
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
@@ -162,7 +161,6 @@ public class NextActivity extends AppCompatActivity{
                 // ...
             }
         };
-
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
