@@ -80,5 +80,6 @@
     <string name="type_a_full_username">Type a full username...</string>
     <string name="use_this_image">Use this image?</string>
     <string name="what_s_on_your_mind">What\'s on your mind?</string>
+    <string name="post">Post</string>
 
 </resources>

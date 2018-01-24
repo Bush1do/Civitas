@@ -61,7 +61,6 @@ public class ProfileFragment extends Fragment {
     private static final int ACTIVITY_NUM=4;
     private static final int NUM_GRID_COLUMNS=3;
 
-
     //Widgets
     private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
     private ProgressBar mProgressbar;

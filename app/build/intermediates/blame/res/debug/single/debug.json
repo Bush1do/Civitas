@@ -684,6 +684,10 @@
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     },
     {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_snippet_text_post.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\snippet_text_post.xml"
+    },
+    {
         "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_menu_overflow_material.xml.flat",
         "source": "C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
@@ -1748,6 +1752,10 @@
         "source": "C:\\Users\\charlesisaac\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.0.4.aar\\fb4a3a9b36566778907944a17f15691c\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
     },
     {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_view_text_post.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\layout_view_text_post.xml"
+    },
+    {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_header.xml.flat",
         "source": "C:\\Users\\charlesisaac\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.0.2.aar\\375506a61057a4f3ce9ef22e4d240d27\\res\\layout\\design_navigation_item_header.xml"
     },
@@ -2138,6 +2146,10 @@
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.0.4.aar\\3519b5ae291a96eae5bc42fe361bcb4f\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_cam_next.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\activity_cam_next.xml"
     },
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
@@ -8920,6 +8932,10 @@
         "source": "C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_text_post.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\fragment_text_post.xml"
+    },
+    {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_snippet_searchbar.xml.flat",
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\snippet_searchbar.xml"
     },
@@ -10194,6 +10210,10 @@
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_settings.png.flat",
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\drawable-xhdpi\\ic_settings.png"
+    },
+    {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_snippet_text_post_toolbar.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\snippet_text_post_toolbar.xml"
     },
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -11866,6 +11886,10 @@
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_edittext.xml.flat",
         "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\1677d2da17642bf91efb447072f40c65\\res\\color-v23\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\res\\merged\\debug\\layout_goto_activity.xml.flat",
+        "source": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\src\\main\\res\\layout\\goto_activity.xml"
     },
     {
         "merged": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_confirm_password.xml.flat",
