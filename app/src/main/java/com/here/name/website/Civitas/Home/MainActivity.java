@@ -130,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements MainfeedListAdapt
         adapter.addFragment(new PhotoFragment()); //index 0
         adapter.addFragment(new HomeFragment()); //index 1
         adapter.addFragment(new FeelingsFragment()); //index 2
-        adapter.addFragment(new FriendsFragment()); //index 3
-        adapter.addFragment(new ChatFragment()); //index 4
+        //adapter.addFragment(new FriendsFragment()); //index 3
+        //adapter.addFragment(new ChatFragment()); //index 4
         mViewPager.setAdapter(adapter);
         mViewPager.setCurrentItem(1);
 
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements MainfeedListAdapt
         final int colorRed = ContextCompat.getColor(this, R.color.red);
         final int colorPurple = ContextCompat.getColor(this, R.color.purple);
 
-        final Integer[] col={colorYellow,colorBlue,colorGreen,colorRed,colorPurple};
+        final Integer[] col={colorYellow,colorBlue,colorGreen};
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

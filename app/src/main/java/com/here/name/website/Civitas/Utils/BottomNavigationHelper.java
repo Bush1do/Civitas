@@ -49,7 +49,7 @@ public class BottomNavigationHelper {
                         break;
 
                     case R.id.icon_circle:
-                        Intent intent3= new Intent(context, NextActivity.class);//ACTIVITY_NUM=2
+                        Intent intent3= new Intent(context, ShareActivity.class);//ACTIVITY_NUM=2
                         context.startActivity(intent3);
                         callingActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                         break;

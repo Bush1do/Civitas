@@ -50,49 +50,35 @@ import static android.app.Activity.RESULT_OK;
 public class GalleryFragment extends Fragment {
     private static final String TAG = "GalleryFragment";
 
-    //Firebase
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference myRef;
-    private FirebaseMethods mFirebaseMethods;
-
     //Constants
-    private static final int GALLERY_REQUEST=1;
+    //private static final int GALLERY_REQUEST=1;
+    private static final int NUM_GRID_COLUMNS = 3;
 
     //Widgets
     private GridView gridView;
     private ImageView galleryImage;
     private ProgressBar mProgressBar;
-    private EditText mCaption;
+    private Spinner directorySpinner;
 
     //Variables
-    //private ArrayList<String> directories;
-    private static final String mAppend="file://";
+    private ArrayList<String> directories;
+    private static final String mAppend="file:/";
     private String mSelectedImage;
-
-    //Variables
-    private int imageCount=0;
-    private String imgUrl;
-    private Intent intent;
-    private Bitmap bitmap;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_gallery, container,false);
         galleryImage=(ImageView) view.findViewById(R.id.galleryImageView);
-        gridView=(GridView) view.findViewById(R.id.gridView);
+        gridView=(GridView) view.findViewById(R.id.gallerygridView);
         mProgressBar=(ProgressBar) view.findViewById(R.id.progressBarGallery);
         mProgressBar.setVisibility(View.GONE);
-        //directories=new ArrayList<>();
-
-        mCaption=(EditText) view.findViewById(R.id.caption);
-
-        //setupFirebaseAuth();
-        //init();
+        directories=new ArrayList<>();
+        directorySpinner = (Spinner) view.findViewById(R.id.spinnerDirectory);
 
         Log.d(TAG, "onCreateView: Started");
+
+        //init();
 
         ImageView shareClose= (ImageView) view.findViewById(R.id.imagefViewCloseShare);
         shareClose.setOnClickListener(new View.OnClickListener() {
@@ -109,26 +95,16 @@ public class GalleryFragment extends Fragment {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Navigating to the final share screen");
 
-                if(PhotoFragment.isRootTask()){
-                    try {
-                        Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                        Intent intent= new Intent(getActivity(),NextActivity.class);
-                        intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                        startActivity(intent);
-                    } catch (NullPointerException e){
-                        Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                    }
-                } else{
-                    try {
-                        Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                        Intent intent= new Intent(getActivity(),AccountSettingsActivity.class);
-                        intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                        intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
-                        startActivity(intent);
-                        getActivity().finish();
-                    } catch (NullPointerException e){
-                        Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                    }
+                if(isRootTask()){
+                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -137,21 +113,22 @@ public class GalleryFragment extends Fragment {
         return view;
     }
 
-//    public boolean isRootTask(){
-//        if(ACTIVITY_NUM==2){
-//            return true;
-//        } else{
-//            return false;
-//        }
-//    }
+    private boolean isRootTask(){
+        if(((ShareActivity)getActivity()).getTask() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     private void init(){
 
-        Intent galleryIntent=new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, GALLERY_REQUEST);
+//        Intent galleryIntent=new Intent(Intent.ACTION_GET_CONTENT);
+//        galleryIntent.setType("image/*");
+//        startActivityForResult(galleryIntent, GALLERY_REQUEST);
 
-        /*FilesPaths filesPaths=new FilesPaths();
+        FilesPaths filesPaths=new FilesPaths();
 
         //Check for other folders in "/storage/emulated/0/pictures"
         if(FileSearch.getDirectoryPaths(filesPaths.PICTURES) != null){
@@ -186,155 +163,68 @@ public class GalleryFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });*/
+        });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLERY_REQUEST&& resultCode==RESULT_OK){
-            Uri imageUri=data.getData();
-            galleryImage.setImageURI(imageUri);
+    private void SetupGridView(String selectedDirectory){
+        Log.d(TAG, "SetupGridView: Directory chosen: "+selectedDirectory);
+        final ArrayList<String> imageURLS= FileSearch.getFilePath(selectedDirectory);
 
-            //Move to final share screen to publish photo
-            if(PhotoFragment.isRootTask()){
-                try {
-                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                    Intent intent= new Intent(getActivity(),NextActivity.class);
-                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                    startActivity(intent);
-                } catch (NullPointerException e){
-                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                }
-            } else{
-                try {
-                    Log.d(TAG, "onActivityResult: Received new bitmap from camera: "+bitmap);
-                    Intent intent= new Intent(getActivity(),AccountSettingsActivity.class);
-                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
-                    intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
-                    startActivity(intent);
-                    getActivity().finish();
-                } catch (NullPointerException e){
-                    Log.d(TAG, "onActivityResult: NullPointerException: "+e.getMessage());
-                }
-            }
+        //Set grid column width
+        int gridWidth=getResources().getDisplayMetrics().widthPixels;
+        int imageWidth=gridWidth/NUM_GRID_COLUMNS;
+        gridView.setColumnWidth(imageWidth);
+
+        //Use grid adapter to adapt images to gridView file://
+        GridImageAdapter adapter=new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,mAppend,imageURLS);
+        gridView.setAdapter(adapter);
+
+        //Set first image to display
+        try {
+            setImage(imageURLS.get(0),galleryImage,mAppend);
+            mSelectedImage=imageURLS.get(0);
+        }catch (ArrayIndexOutOfBoundsException e){
+            Log.e(TAG, "SetupGridView: ArrayIndexOutOfBoundsException: "+ e.getMessage() );
         }
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.d(TAG, "onItemClick: Selected an image: "+imageURLS.get(position));
+
+                setImage(imageURLS.get(position),galleryImage,mAppend);
+                mSelectedImage=imageURLS.get(position);
+
+            }
+        });
     }
 
-//    private void SetupGridView(String selectedDirectory){
-//        Log.d(TAG, "SetupGridView: Directory chosen: "+selectedDirectory);
-//        final ArrayList<String> imageURLS= FileSearch.getFilePath(selectedDirectory);
-//
-//        //Set grid column width
-//        int gridWidth=getResources().getDisplayMetrics().widthPixels;
-//        int imageWidth=gridWidth/NUM_GRID_COLUMNS;
-//        gridView.setColumnWidth(imageWidth);
-//
-//        //Use grid adapter to adapt images to gridView file://
-//        GridImageAdapter adapter=new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,mAppend,imageURLS);
-//        gridView.setAdapter(adapter);
-//
-//        //Set first image to display
-//        try {
-//            setImage(imageURLS.get(0),galleryImage,mAppend);
-//            mSelectedImage=imageURLS.get(0);
-//        }catch (ArrayIndexOutOfBoundsException e){
-//            Log.e(TAG, "SetupGridView: ArrayIndexOutOfBoundsException: "+ e.getMessage() );
-//        }
-//
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Log.d(TAG, "onItemClick: Selected an image: "+imageURLS.get(position));
-//
-//                setImage(imageURLS.get(position),galleryImage,mAppend);
-//                mSelectedImage=imageURLS.get(position);
-//
-//            }
-//        });
-//    }
+    private void setImage(String imgURL, ImageView image, String append){
+        Log.d(TAG, "setImage: setting image");
 
-//    private void setImage(String imgURL, ImageView image, String append){
-//        Log.d(TAG, "Image: Setting Image");
-//
-//        ImageLoader imageLoader= ImageLoader.getInstance();
-//        imageLoader.displayImage(append + imgURL, image, new ImageLoadingListener() {
-//            @Override
-//            public void onLoadingStarted(String imageUri, View view) {
-//                mProgressBar.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-//                mProgressBar.setVisibility(View.INVISIBLE);
-//
-//            }
-//
-//            @Override
-//            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//                mProgressBar.setVisibility(View.INVISIBLE);
-//
-//            }
-//
-//            @Override
-//            public void onLoadingCancelled(String imageUri, View view) {
-//                mProgressBar.setVisibility(View.INVISIBLE);
-//
-//            }
-//        });
-//    }
+        ImageLoader imageLoader = ImageLoader.getInstance();
 
-//    //-------------------------Firebase------------------------
-//    //Setting up Firebase Authentication
-//    private void setupFirebaseAuth(){
-//        Log.d(TAG, "setupFirebaseAuth: Setting up firebase auth.");
-//        mAuth = FirebaseAuth.getInstance();
-//        mFirebaseDatabase= FirebaseDatabase.getInstance();
-//        myRef= mFirebaseDatabase.getReference();
-//        Log.d(TAG, "onDataChange: Image count: "+imageCount);
-//
-//
-//        mAuthListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = firebaseAuth.getCurrentUser();
-//
-//                if (user != null) {
-//                    // User is signed in
-//                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-//                } else {
-//                    // User is signed out
-//                    Log.d(TAG, "onAuthStateChanged:signed_out");
-//                }
-//                // ...
-//            }
-//        };
-//
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                imageCount= mFirebaseMethods.getImageCount(dataSnapshot);
-//                Log.d(TAG, "onDataChange: Image count: "+imageCount);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                //Retrieve user info from database
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        mAuth.addAuthStateListener(mAuthListener);
-//
-//    }
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        if (mAuthListener != null) {
-//            mAuth.removeAuthStateListener(mAuthListener);
-//        }
-//    }
+        imageLoader.displayImage(append + imgURL, image, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+                mProgressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
 }

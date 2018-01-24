@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/container">
-
     </FrameLayout>
     
     <View
@@ -44,6 +43,15 @@
         android:layout_below="@+id/relLayout1">
 
         <include layout="@layout/layout_center_viewpager"/>
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/relLayout3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+        <!--<include layout="@layout/snippet_text_post"/>-->
+
+    <!--</RelativeLayout>-->
 
     </RelativeLayout>
 
