@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
+ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
 MERGED from [com.theartofdev.edmodo:android-image-cropper:2.6.0] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\android-image-cropper-2.6.0.aar\11a5fc8bef1828a084f6834129c665dc\AndroidManifest.xml:2:1-12:12
 MERGED from [com.github.ittianyu:BottomNavigationViewEx:1.2.1] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\BottomNavigationViewEx-1.2.1.aar\f7afb315e22206c291c6c0965543e4e7\AndroidManifest.xml:2:1-14:12
 MERGED from [com.android.support:design:27.0.2] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\458d07a32153505a92b5cd001b206c06\AndroidManifest.xml:17:1-22:12
@@ -36,20 +36,20 @@ MERGED from [com.android.support:transition:27.0.2] C:\Users\Charles\.gradle\cac
 MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\06d7e293ad554480de88fce878e28ed3\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-compat:27.0.2] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\34e1b554aeb36189c5fd73e6d8e9463b\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\a174de2deca25b30416634aa4b3ea568\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
+INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
 	package
 		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:3:5-44
 		INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
+		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
 		INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-52:12
+		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:1-53:12
 		INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:2:11-69
@@ -76,7 +76,7 @@ ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidMa
 	android:name
 		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:8:22-62
 application
-ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:10:5-50:19
+ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:10:5-51:19
 MERGED from [com.github.ittianyu:BottomNavigationViewEx:1.2.1] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\BottomNavigationViewEx-1.2.1.aar\f7afb315e22206c291c6c0965543e4e7\AndroidManifest.xml:11:5-12:19
 MERGED from [com.github.ittianyu:BottomNavigationViewEx:1.2.1] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\BottomNavigationViewEx-1.2.1.aar\f7afb315e22206c291c6c0965543e4e7\AndroidManifest.xml:11:5-12:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Charles\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\6af40c91279b6a5e39741e26b0a45494\AndroidManifest.xml:9:5-20
@@ -183,6 +183,10 @@ activity#com.here.name.website.Civitas.Share.NextActivity
 ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:45:9-94
 	android:name
 		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:45:19-82
+activity#com.here.name.website.Civitas.Share.CameraNextActivity
+ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:46:9-100
+	android:name
+		ADDED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml:46:19-88
 uses-sdk
 INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Charles\AndroidStudioProjects\Civitas\app\src\main\AndroidManifest.xml

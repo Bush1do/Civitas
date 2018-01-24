@@ -18,6 +18,7 @@
             android:src="@drawable/final_bigpixel"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="40dp"/>
+
         <!--Email Insert-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

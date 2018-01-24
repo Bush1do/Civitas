@@ -414,7 +414,7 @@ public class ViewPostFragment extends Fragment {
 
          //UniversalImageLoader.setImage(mUserAccountSettings.getProfile_photo(), mProfileImage, null, "");
         //mUsername.setText(mUserAccountSettings.getUsername());
-       //mLikes.setText(mLikesString);
+       mLikes.setText(mLikesString);
         mCaption.setText(mPhoto.getCaption());
 
         if(mPhoto.getComments().size()>0){
@@ -493,30 +493,29 @@ public class ViewPostFragment extends Fragment {
             Log.e(TAG, "getTimeStampDifference: ParseException: " + e.getMessage());
             difference = "0";
         }
-
         return difference;
     }
 
     //Retrieve activity number from bundle from profileActivity interface
-    private int getActivityNumFromBundle() {
-        Log.d(TAG, "Bundle: Arguments: " + getArguments());
+    private int getActivityNumFromBundle(){
+        Log.d(TAG, "getActivityNumFromBundle: arguments: " + getArguments());
 
         Bundle bundle = this.getArguments();
-        if (bundle != null) {
+        if(bundle != null) {
             return bundle.getInt(getString(R.string.activity_number));
-        } else {
+        }else{
             return 0;
         }
     }
 
     //Retrieve bundle from profileActivity interface
-    private Photo getPhotoFromBundle() {
-        Log.d(TAG, "Bundle: Arguments: " + getArguments());
+    private Photo getPhotoFromBundle(){
+        Log.d(TAG, "getPhotoFromBundle: arguments: " + getArguments());
 
         Bundle bundle = this.getArguments();
-        if (bundle != null) {
+        if(bundle != null) {
             return bundle.getParcelable(getString(R.string.photo));
-        } else {
+        }else{
             return null;
         }
     }
@@ -534,8 +533,9 @@ public class ViewPostFragment extends Fragment {
 
     //-------------------------Firebase------------------------
     //Setting up Firebase Authentication
-    private void setupFirebaseAuth() {
-        Log.d(TAG, "setupFirebaseAuth: Setting up firebase auth.");
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -544,6 +544,7 @@ public class ViewPostFragment extends Fragment {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
 
                 if (user != null) {
                     // User is signed in
@@ -556,7 +557,9 @@ public class ViewPostFragment extends Fragment {
             }
         };
 
+
     }
+
 
     @Override
     public void onStart() {

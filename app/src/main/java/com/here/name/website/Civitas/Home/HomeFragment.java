@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class HomeFragment extends Fragment {
     private MainfeedListAdapter mAdapter;
     private int mResults;
     private ArrayList<Photo> mPaginatedPhotos;
+    private Button sendButton;
 
     @Nullable
     @Override
@@ -50,6 +52,7 @@ public class HomeFragment extends Fragment {
         mListView= (ListView) view.findViewById(R.id.listView);
         mFollowing=new ArrayList<>();
         mPhotos=new ArrayList<>();
+        sendButton=(Button) view.findViewById(R.id.sendTextPostButton);
 
         getFollowing();
 
