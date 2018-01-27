@@ -426,11 +426,9 @@ public class ViewPostFragment extends Fragment {
         mComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mPhoto.getComments().size()>0) {
                     Log.d(TAG, "onClick: Navigating to comments thread");
 
                     mOnCommentThreadSelectedListener.OnCommentThreadSelectedListener(mPhoto);
-                }
             }
         });
 

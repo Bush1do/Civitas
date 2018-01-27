@@ -16,10 +16,10 @@
         android:icon="@drawable/ic_circle"
         android:title=""/>
 
-    <item
-        android:id="@+id/icon_alert"
-        android:icon="@drawable/ic_alert"
-        android:title=""/>
+    <!--<item-->
+        <!--android:id="@+id/icon_alert"-->
+        <!--android:icon="@drawable/ic_alert"-->
+        <!--android:title=""/>-->
 
     <item
         android:id="@+id/icon_android"

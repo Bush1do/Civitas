@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.here.name.website.Civitas.Home.MainActivity;
 import com.here.name.website.Civitas.Models.GridItem;
 import com.here.name.website.Civitas.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -27,54 +29,50 @@ import java.util.ArrayList;
  * Created by Charles on 6/30/2017.
  */
 
-public class GridEmotionAdapter extends ArrayAdapter<GridItem>{
+public class GridEmotionAdapter extends BaseAdapter{
     private Context mContext;
-    //private LayoutInflater mInflater;
-    private int layoutResource;
-    private String mAppend;
-    private ArrayList<GridItem> mGridData = new ArrayList<GridItem>();
+    LayoutInflater inflaterf;
+    private final int[] emotions;
+    private final String[] titles;
 
-    public GridEmotionAdapter(Context context, int layoutResource, String append, ArrayList<GridItem> mGridData) {
-        super(context, layoutResource, mGridData);
-       // mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mContext = context;
-        this.layoutResource = layoutResource;
-        mAppend = append;
-        this.mGridData = mGridData;
+    public GridEmotionAdapter(Context context, String[] values,int[] emotions) {
+        this.mContext = context;
+        this.titles = values;
+        this.emotions = emotions;
+        inflaterf=(LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
-    private  static  class ViewHolder{
-        TextView titleTextView;
-        ImageView imageView;
-    }
-    public void setGridData(ArrayList<GridItem> mGridData) {
-        this.mGridData = mGridData;
-        notifyDataSetChanged();
-    }
-
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public int getCount() {
+        return titles.length;
+    }
 
-        //Viewholder build pattern is similar to recyclerView
-        ViewHolder holder;
-        if (convertView==null){
+    @Override
+    public Object getItem(int position) {
+        return titles[position];
+    }
 
-            //If error, use mInflater
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-            LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
-            convertView=inflater.inflate(layoutResource, parent, false);
-            holder= new ViewHolder();
-            holder.titleTextView = (TextView) convertView.findViewById(R.id.gridTitleView);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.gridImageView);
-            convertView.setTag(holder);
-        } else{
-            holder= (ViewHolder) convertView.getTag();
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View gridView=convertView;
+
+        if(convertView==null){
+//            inflaterf=(LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            gridView=inflaterf.inflate(R.layout.layout_grid_emotionview,null);
         }
-        GridItem item = mGridData.get(position);
-        holder.titleTextView.setText(Html.fromHtml(item.getTitle()));
 
-        Picasso.with(mContext).load(item.getImage()).into(holder.imageView);
-        return convertView;
+        ImageView imageView= (ImageView) gridView.findViewById(R.id.gridEmotionView);
+        TextView textView=(TextView) gridView.findViewById(R.id.gridEmotionTitleView);
+
+        imageView.setImageResource(emotions[position]);
+        textView.setText(titles[position]);
+
+        return gridView;
     }
 }

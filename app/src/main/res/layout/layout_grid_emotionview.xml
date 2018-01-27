@@ -4,15 +4,18 @@
      android:layout_height="wrap_content"
      android:orientation="vertical">
 
-    <com.here.name.website.Civitas.Utils.SquareImageView
-        android:id="@+id/gridImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+    <ImageView
+        android:id="@+id/gridEmotionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_blue_smile"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/gridTitleView"
-        android:text=""
+        android:id="@+id/gridEmotionTitleView"
+        android:layout_below="@id/gridEmotionView"
+        android:layout_centerInParent="true"
+        android:text="Happy"
         android:textSize="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

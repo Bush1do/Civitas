@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ASCEND TODAY!"
+            android:text="Enter your email and password"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:gravity="center_horizontal"
@@ -87,7 +87,7 @@
         android:id="@+id/loadingPleaseWait"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hold Your Horses..."
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_alignBottom="@+id/progressBar"

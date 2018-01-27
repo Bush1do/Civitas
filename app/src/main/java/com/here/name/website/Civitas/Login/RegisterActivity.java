@@ -152,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
                  mUsername = username + append;
 
                  //add new user to the database
-                 firebaseMethods.addNewUser(email, mUsername, "", "", "");
+                 firebaseMethods.addNewUser(email, mUsername, "", "");
                  String deviceToken= FirebaseInstanceId.getInstance().getToken();
                  String current_user_id= mAuth.getCurrentUser().getUid();
                  myRef.child(current_user_id)

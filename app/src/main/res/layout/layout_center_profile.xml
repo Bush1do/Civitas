@@ -77,11 +77,11 @@
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"/>
                 <TextView
-                    android:id="@+id/website"
+                    android:id="@+id/feeling"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue"
-                    android:text="@string/website"
+                    android:text="@string/feeling"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"/>
 

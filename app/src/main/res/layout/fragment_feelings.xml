@@ -24,10 +24,77 @@
         android:layout_marginTop="50dp"
         android:textColor="@color/white"
         android:textSize="20sp"/>
-    <!--<ImageView-->
-        <!--android:id="@+id/shrt"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src=""/>-->
+
+    <RelativeLayout
+        android:id="@+id/relLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="50dp">
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/bluesmile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_blue_smile"/>
+        <ImageView
+            android:id="@+id/redfrown"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/bluesmile"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_red_frown"/>
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/yellowmeh"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/redfrown"
+            android:src="@drawable/ic_yellow_meh"/>
+        <ImageView
+            android:id="@+id/orangesurp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/bluesmile"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_surprised"/>
+        <ImageView
+            android:id="@+id/greennerv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/orangesurp"
+            android:layout_below="@+id/bluesmile"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_nervous"/>
+        <ImageView
+            android:id="@+id/sleeppurp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@+id/greennerv"
+            android:layout_below="@+id/yellowmeh"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_sleepy"/>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

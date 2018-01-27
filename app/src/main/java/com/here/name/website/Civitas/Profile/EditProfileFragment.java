@@ -115,7 +115,7 @@ public class EditProfileFragment extends DialogFragment implements
     private String userID;
 
     //EditProfile Fragment Widgets
-    private EditText mDisplayName, mUsername, mWebsite, mDescription, mEmail, mPhoneNumber;
+    private EditText mDisplayName, mUsername, mDescription, mEmail, mPhoneNumber;
     private TextView mChangeProfilePhoto;
     private CircularImageView mProfilePhoto;
 
@@ -131,7 +131,6 @@ public class EditProfileFragment extends DialogFragment implements
         mProfilePhoto=(CircularImageView) view.findViewById(R.id.profile_photo);
         mDisplayName= (EditText) view.findViewById(R.id.display_name);
         mUsername=(EditText)view.findViewById(R.id.username);
-        mWebsite=(EditText)view.findViewById(R.id.website);
         mDescription=(EditText)view.findViewById(R.id.description);
         mEmail=(EditText)view.findViewById(R.id.email);
         mPhoneNumber=(EditText)view.findViewById(R.id.phoneNumber);
@@ -169,7 +168,6 @@ public class EditProfileFragment extends DialogFragment implements
     private void saveProfileSettings(){
         final String displayName= mDisplayName.getText().toString();
         final String username= mUsername.getText().toString();
-        final String website= mWebsite.getText().toString();
         final String description= mDescription.getText().toString();
         final String email= mEmail.getText().toString();
         final long phoneNumber= Long.parseLong(mPhoneNumber.getText().toString());
@@ -193,19 +191,15 @@ public class EditProfileFragment extends DialogFragment implements
         //Change other user settings
         if(!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
             //update displayName
-            mFirebaseMethods.updateUserAccountSettings(displayName,null,null,0);
-        }
-        if(!mUserSettings.getSettings().getWebsite().equals(website)){
-            //update website
-            mFirebaseMethods.updateUserAccountSettings(null,website,null,0);
+            mFirebaseMethods.updateUserAccountSettings(displayName,null,0);
         }
         if(!mUserSettings.getSettings().getDescription().equals(description)){
             //update description
-            mFirebaseMethods.updateUserAccountSettings(null,null,description,0);
+            mFirebaseMethods.updateUserAccountSettings(null,description,0);
         }
         if(!mUserSettings.getSettings().getProfile_photo().equals(phoneNumber)){
             //update phone number
-            mFirebaseMethods.updateUserAccountSettings(null,null,null,phoneNumber);
+            mFirebaseMethods.updateUserAccountSettings(null,null,phoneNumber);
         }
 
     }
@@ -227,7 +221,7 @@ public class EditProfileFragment extends DialogFragment implements
                 if (!dataSnapshot.exists()){
                     //add username
                     mFirebaseMethods.updateUsername(username);
-                    Toast.makeText(getActivity(), "Saved username", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Changed username", Toast.LENGTH_SHORT).show();
                 }
                 for(DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
                     if (singleSnapshot.exists()){
@@ -257,7 +251,6 @@ public class EditProfileFragment extends DialogFragment implements
 
         mDisplayName.setText(settings.getDisplay_name());
         mUsername.setText(settings.getUsername());
-        mWebsite.setText(settings.getWebsite());
         mDescription.setText(settings.getDescription());
         mEmail.setText(userSettings.getUser().getEmail());
         mPhoneNumber.setText(String.valueOf(userSettings.getUser().getPhone_number()));

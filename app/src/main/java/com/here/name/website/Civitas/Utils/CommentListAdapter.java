@@ -58,7 +58,6 @@ public class CommentListAdapter extends ArrayAdapter<Comment> {
         TextView comment,username,timeStamp,likes_this,reply;
         CircularImageView profileImage;
         ImageView commentLikeButton;
-        User user=new User();
     }
 
     @NonNull
@@ -87,7 +86,7 @@ public class CommentListAdapter extends ArrayAdapter<Comment> {
         holder.comment.setText(getItem(position).getComment());
 
         //Set timestamp difference
-        String timeStampDifference= getTimeStampDifference(getItem(position));
+        String timeStampDifference= getTimestampDifference(getItem(position));
         if(!timeStampDifference.equals("0")){
             holder.timeStamp.setText(timeStampDifference+" d");
         } else{
@@ -106,18 +105,6 @@ public class CommentListAdapter extends ArrayAdapter<Comment> {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     holder.username.setText(
                             singleSnapshot.getValue(UserAccountSettings.class).getUsername());
-                    holder.username.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Log.d(TAG, "onClick: Navigating to profile of: "
-                                    +holder.user.getUsername());
-                            Intent intent= new Intent(mContext, ProfileActivity.class);
-                            intent.putExtra(mContext.getString(R.string.calling_activity),
-                                    mContext.getString(R.string.main_activity));
-                            intent.putExtra(mContext.getString(R.string.intent_user),holder.user);
-                            mContext.startActivity(intent);
-                        }
-                    });
 
                     ImageLoader imageLoader=ImageLoader.getInstance();
 
@@ -143,30 +130,28 @@ public class CommentListAdapter extends ArrayAdapter<Comment> {
             Log.e(TAG, "getView: NullPointerException: "+e.getMessage() );
         }
 
-
-
         return convertView;
     }
 
     //Returns string  saying how many days ago post was made
-    private String getTimeStampDifference(Comment comment) {
-        Log.d(TAG, "getTimeStampDifference: Getting timestamp difference.");
-        String difference = null;
+    private String getTimestampDifference(Comment comment){
+        Log.d(TAG, "getTimestampDifference: getting timestamp difference.");
+
+        String difference = "";
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
-        sdf.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.CANADA);
+        sdf.setTimeZone(TimeZone.getTimeZone("America/New_York"));//google 'android list of timezones'
         Date today = c.getTime();
         sdf.format(today);
-        Date timeStamp;
-        final String photoTimeStamp = comment.getDate_created();
-        try {
-            timeStamp = sdf.parse(photoTimeStamp);
-            difference = String.valueOf(Math.round(((today.getTime() - timeStamp.getTime()) / 1000 / 60 / 60 / 24)));
-        } catch (ParseException e) {
-            Log.e(TAG, "getTimeStampDifference: ParseException: " + e.getMessage());
+        Date timestamp;
+        final String photoTimestamp = comment.getDate_created();
+        try{
+            timestamp = sdf.parse(photoTimestamp);
+            difference = String.valueOf(Math.round(((today.getTime() - timestamp.getTime()) / 1000 / 60 / 60 / 24 )));
+        }catch (ParseException e){
+            Log.e(TAG, "getTimestampDifference: ParseException: " + e.getMessage() );
             difference = "0";
         }
-
         return difference;
     }
 }

@@ -219,7 +219,7 @@ public class FirebaseMethods {
     }
 
     //Update user_account_settings in Firebase hierarchy
-    public void updateUserAccountSettings(String displayName, String website, String description,long phoneNumber){
+    public void updateUserAccountSettings(String displayName, String description,long phoneNumber){
         Log.d(TAG, "updateUserAccountSettings: Updating user account settings");
 
         if(displayName!=null){
@@ -228,12 +228,7 @@ public class FirebaseMethods {
                     .child(mContext.getString(R.string.field_displayName))
                     .setValue(displayName);
         }
-        if(website!=null){
-            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-                    .child(userID)
-                    .child(mContext.getString(R.string.field_website))
-                    .setValue(website);
-        }
+
         if(description!=null){
             myRef.child(mContext.getString(R.string.dbname_user_account_settings))
                     .child(userID)
@@ -325,7 +320,7 @@ public class FirebaseMethods {
 
 
 
-    public void addNewUser(String email, String username, String description, String website, String profile_photo){
+    public void addNewUser(String email, String username, String description, String profile_photo){
 
         User user = new User( userID,  1,  email,  StringManipulation.condenseUsername(username) );
 
@@ -342,7 +337,6 @@ public class FirebaseMethods {
                 0,
                 profile_photo,
                 StringManipulation.condenseUsername(username),
-                website,
                 userID
         );
 
@@ -376,11 +370,7 @@ public class FirebaseMethods {
                         .getValue(UserAccountSettings.class)
                         .getUsername()
                 );
-                settings.setWebsite(
-                        ds.child(userID)
-                                .getValue(UserAccountSettings.class)
-                                .getWebsite()
-                );
+
                 settings.setDescription(
                         ds.child(userID)
                                 .getValue(UserAccountSettings.class)

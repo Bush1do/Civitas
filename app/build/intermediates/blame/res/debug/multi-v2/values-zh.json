@@ -1,70 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Volumes\\USB DISK\\Civitas\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\charlesisaac\\.gradle\\caches\\transforms-1\\files-1.1\\android-image-cropper-2.6.0.aar\\fb04ec79f4b206765a47e852af679776\\res\\values-zh\\values-zh.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,107,169,232",
-                        "endColumns": "51,61,62,64",
-                        "endOffsets": "102,164,227,292"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
-            "map": [
-                {
-                    "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\android-image-cropper-2.6.0.aar\\11a5fc8bef1828a084f6834129c665dc\\res\\values-zh\\values-zh.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,107,169,232",
-                        "endColumns": "51,61,62,64",
-                        "endOffsets": "102,164,227,292"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "F:\\Civitas-master\\Civitas-master\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\android-image-cropper-2.6.0.aar\\11a5fc8bef1828a084f6834129c665dc\\res\\values-zh\\values-zh.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,107,169,232",
-                        "endColumns": "51,61,62,64",
-                        "endOffsets": "102,164,227,292"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\Charles\\AndroidStudioProjects\\Civitas\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\android-image-cropper-2.6.0.aar\\11a5fc8bef1828a084f6834129c665dc\\res\\values-zh\\values-zh.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,107,169,232",
-                        "endColumns": "51,61,62,64",
-                        "endOffsets": "102,164,227,292"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\AndroidStudioProjects\\Poom\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
-            "map": [
-                {
-                    "source": "C:\\Volumes\\USB DISK\\Civitas\\C:\\Users\\Charles\\.gradle\\caches\\transforms-1\\files-1.1\\android-image-cropper-2.6.0.aar\\11a5fc8bef1828a084f6834129c665dc\\res\\values-zh\\values-zh.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

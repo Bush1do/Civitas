@@ -57,12 +57,12 @@ public class ViewProfileFragment extends Fragment {
     }
     OnGridImageSelectedListener mOnGridImageSelectedListener;
 
-    private static final int ACTIVITY_NUM=4;
+    private static final int ACTIVITY_NUM=3;
     private static final int NUM_GRID_COLUMNS=3;
 
 
     //Widgets
-    private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription,
+    private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mFeeling, mDescription,
     mFollow,mUnfollow;
     private ProgressBar mProgressbar;
     private CircularImageView mProfilePhoto;
@@ -91,7 +91,7 @@ public class ViewProfileFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_view_profile, container, false);
         mDisplayName= (TextView) view.findViewById(R.id.display_name);
         mUsername= (TextView) view.findViewById(R.id.username);
-        mWebsite= (TextView) view.findViewById(R.id.website);
+        mFeeling= (TextView) view.findViewById(R.id.feeling);
         mDescription= (TextView) view.findViewById(R.id.description);
         mProfilePhoto= (CircularImageView) view.findViewById(R.id.profile_photo);
         mPosts= (TextView) view.findViewById(R.id.tvPosts);
@@ -446,7 +446,7 @@ public class ViewProfileFragment extends Fragment {
 
         mDisplayName.setText(settings.getDisplay_name());
         mUsername.setText(settings.getUsername());
-        mWebsite.setText(settings.getWebsite());
+        //mFeeling.setText(settings.getFeeling());
         mDescription.setText(settings.getDescription());
         mPosts.setText(String.valueOf(settings.getPosts()));
         mFollowers.setText(String.valueOf(settings.getFollowers()));

@@ -16,12 +16,11 @@ public class UserAccountSettings implements Parcelable {
     private long posts;
     private String profile_photo;
     private String username;
-    private String website;
     private String user_id;
 
     public UserAccountSettings(String description, String display_name, long followers,
                                long following, long posts, String profile_photo, String username,
-                               String website, String user_id) {
+                               String user_id) {
         this.description = description;
         this.display_name = display_name;
         this.followers = followers;
@@ -29,7 +28,6 @@ public class UserAccountSettings implements Parcelable {
         this.posts = posts;
         this.profile_photo = profile_photo;
         this.username = username;
-        this.website = website;
         this.user_id = user_id;
     }
 
@@ -46,7 +44,6 @@ public class UserAccountSettings implements Parcelable {
         posts = in.readLong();
         profile_photo = in.readString();
         username = in.readString();
-        website = in.readString();
         user_id = in.readString();
     }
 
@@ -126,14 +123,6 @@ public class UserAccountSettings implements Parcelable {
         this.username = username;
     }
 
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
     @Override
     public String toString() {
         return "UserAccountSettings{" +
@@ -144,7 +133,6 @@ public class UserAccountSettings implements Parcelable {
                 ", posts=" + posts +
                 ", profile_photo='" + profile_photo + '\'' +
                 ", username='" + username + '\'' +
-                ", website='" + website + '\'' +
                 '}';
     }
 
@@ -162,7 +150,6 @@ public class UserAccountSettings implements Parcelable {
         parcel.writeLong(posts);
         parcel.writeString(profile_photo);
         parcel.writeString(username);
-        parcel.writeString(website);
         parcel.writeString(user_id);
     }
 }

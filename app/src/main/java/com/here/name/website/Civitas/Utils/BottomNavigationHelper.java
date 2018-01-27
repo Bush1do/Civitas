@@ -54,11 +54,11 @@ public class BottomNavigationHelper {
                         callingActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                         break;
 
-                    case R.id.icon_alert:
-                        Intent intent4= new Intent(context, RequestsActivity.class);//ACTIVITY_NUM=3
-                        context.startActivity(intent4);
-                        callingActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                        break;
+//                    case R.id.icon_alert:
+//                        Intent intent4= new Intent(context, RequestsActivity.class);//ACTIVITY_NUM=3
+//                        context.startActivity(intent4);
+//                        callingActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+//                        break;
 
                     case R.id.icon_android:
                         Intent intent5= new Intent(context, ProfileActivity.class);//ACTIVITY_NUM=4

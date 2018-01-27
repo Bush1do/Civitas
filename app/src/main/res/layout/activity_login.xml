@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:src="@drawable/final_bigpixel"
+            android:src="@drawable/ic_civitas_name"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="40dp"/>
 
@@ -80,7 +80,7 @@
         android:id="@+id/pleaseWait"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hold Your Horses..."
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_alignBottom="@+id/progressBar"

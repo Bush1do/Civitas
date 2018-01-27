@@ -86,26 +86,6 @@ public class ViewCommentsFragment extends Fragment {
             Log.e(TAG, "onCreateView: NullPointerException: photo was null from bundle: " + e.getMessage());
         }
 
-/*
-        CommentListAdapter adapter=new CommentListAdapter(getActivity(),
-                R.layout.layout_comment,mComments);
-        mListView.setAdapter(adapter);
-
-        mCheckMark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!mComment.getText().toString().equals("")){
-                    Log.d(TAG, "onClick: Attempting to submit new comment.");
-                    addNewComment(mComment.getText().toString());
-
-                    mComment.setText("");
-                    closeKeyboard();
-                } else{
-                    Toast.makeText(getActivity(), "You can't post a blank comment", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
-
         return view;
     }
 

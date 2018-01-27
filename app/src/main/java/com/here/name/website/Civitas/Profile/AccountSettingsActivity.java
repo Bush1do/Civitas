@@ -39,7 +39,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
     public SectionStatePagerAdapter pagerAdapter;
     private ViewPager mViewPager;
     private RelativeLayout mRelativeLayout;
-    private static final int ACTIVITY_NUM=4;
+    private static final int ACTIVITY_NUM=3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -94,21 +94,21 @@
                 android:background="@drawable/gray_border_bottom"
                 android:layout_marginTop="15dp">
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_website"
-                    android:layout_centerVertical="true"/>
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:src="@drawable/ic_website"-->
+                    <!--android:layout_centerVertical="true"/>-->
 
-                <EditText
-                    android:id="@+id/website"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="40dp"
-                    android:background="@null"
-                    android:inputType="textNoSuggestions"
-                    android:hint="Website"/>
+                <!--<EditText-->
+                    <!--android:id="@+id/website"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="40dp"-->
+                    <!--android:background="@null"-->
+                    <!--android:inputType="textNoSuggestions"-->
+                    <!--android:hint="Website"/>-->
             </RelativeLayout>
 
             <!--Description Section-->

@@ -137,7 +137,6 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             @Override
             public void onClick(View view) {
                 List<Comment> comments= getItem(position).getComments();
-
                 if(comments.size()>0) {
                     Log.d(TAG, "onClick: Loading comment thread for " + getItem(position).getPhoto_id());
                     ((MainActivity) mContext).onCommentThreadSelected(getItem(position),

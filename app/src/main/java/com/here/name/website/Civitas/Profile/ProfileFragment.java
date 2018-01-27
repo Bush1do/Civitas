@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.here.name.website.Civitas.Home.FeelingsFragment;
 import com.here.name.website.Civitas.Models.Comment;
 import com.here.name.website.Civitas.Models.Like;
 import com.here.name.website.Civitas.Models.Photo;
@@ -58,11 +59,11 @@ public class ProfileFragment extends Fragment {
     }
     OnGridImageSelectedListener mOnGridImageSelectedListener;
 
-    private static final int ACTIVITY_NUM=4;
+    private static final int ACTIVITY_NUM=3;
     private static final int NUM_GRID_COLUMNS=3;
 
     //Widgets
-    private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
+    private TextView mFeeling, mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mDescription;
     private ProgressBar mProgressbar;
     private CircularImageView mProfilePhoto;
     private GridView gridView;
@@ -87,9 +88,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
+        mFeeling=(TextView) view.findViewById(R.id.feeling);
         mDisplayName= (TextView) view.findViewById(R.id.display_name);
         mUsername= (TextView) view.findViewById(R.id.username);
-        mWebsite= (TextView) view.findViewById(R.id.website);
         mDescription= (TextView) view.findViewById(R.id.description);
         mProfilePhoto= (CircularImageView) view.findViewById(R.id.profile_photo);
         mPosts= (TextView) view.findViewById(R.id.tvPosts);
@@ -300,8 +301,9 @@ public class ProfileFragment extends Fragment {
 
         mDisplayName.setText(settings.getDisplay_name());
         mUsername.setText(settings.getUsername());
-        mWebsite.setText(settings.getWebsite());
+       // mFeeling.setText(settings.getFeeling());
         mDescription.setText(settings.getDescription());
+        mFeeling.setText("I feel "+FeelingsFragment.getFeeling());
         mProgressbar.setVisibility(View.GONE);
 
     }
